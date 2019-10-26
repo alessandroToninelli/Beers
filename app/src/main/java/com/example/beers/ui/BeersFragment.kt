@@ -27,8 +27,6 @@ class BeersFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.beers_fragment, container, false)
 
-        println("prova")
-
         binding.model = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
