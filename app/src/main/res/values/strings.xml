@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Beers</string>
+    <string name="beers_fragment_set_interval_button">Set Interval</string>
+    <string name="beers_fragment_reset_interval_button">Reset Interval</string>
+</resources>

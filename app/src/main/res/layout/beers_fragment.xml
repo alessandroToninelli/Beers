@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.beers.vo.Status" />
+
+        <import type="androidx.lifecycle.MutableLiveData" />
+
+        <import type="androidx.lifecycle.LiveData" />
+
+        <variable
+            name="model"
+            type="com.example.beers.ui.BeersViewModel" />
+
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/progress"
+            layout="@layout/progress_paging"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:model="@{model}"
+            app:netState="@{model.networkState}" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/beer_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:adapterSetup="@{model}"
+            android:list="@{model.beerResult}"
+            app:layout_constraintBottom_toTopOf="@+id/time_button" />
+
+        <Button
+            android:id="@+id/time_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/beers_fragment_set_interval_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+
+    </LinearLayout>
+
+
+</layout>

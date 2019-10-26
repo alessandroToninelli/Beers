@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.beers.vo.Status"/>
+
+        <import type="com.example.beers.vo.NetworkState"/>
+
+        <variable
+            name="netState"
+            type="NetworkState"/>
+
+        <variable
+            name="model"
+            type="com.example.beers.ui.BeersViewModel" />
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:showHide="@{netState.status != Status.SUCCESS}"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-9dp"
+            app:showHide="@{netState.status == Status.LOADING}"
+            android:layout_marginBottom="-9dp"
+            android:indeterminate="true"
+            android:minHeight="23dp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:showHide="@{netState.status == Status.ERROR}"
+            android:text="@{netState.msg}"
+            />
+
+        <View
+            app:showHide="@{netState.status == Status.ERROR}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="retry"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:id="@+id/retry"
+            android:onClick="@{(view) -> model.retry(view)}"
+            app:showHide="@{netState.status == Status.ERROR}"
+             />
+
+
+
+    </LinearLayout>
+</layout>
