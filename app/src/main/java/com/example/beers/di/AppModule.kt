@@ -21,7 +21,7 @@ val appModule = module {
         Retrofit.Builder()
             .baseUrl("https://api.punkapi.com/v2/")
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(NetworkCallAdapterFactory())
+            .addCallAdapterFactory(NetworkCallAdapterFactory.create())
             .build()
             .create(BeerApi::class.java)
     }
