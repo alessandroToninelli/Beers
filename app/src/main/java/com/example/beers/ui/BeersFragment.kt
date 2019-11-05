@@ -30,6 +30,10 @@ class BeersFragment : Fragment() {
         binding.model = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        binding.beerList.adapter = BeerAdapter{
+            println(it)
+        }
+
         binding.timeButton.setOnClickListener {
 
             when (binding.timeButton.text) {

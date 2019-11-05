@@ -12,16 +12,17 @@ import com.example.beers.ui.BeersViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.lang.Exception
+import kotlin.contracts.contract
 
-@BindingAdapter("android:adapterSetup", "android:list")
-fun setupRecyclerViewAdapter(view: RecyclerView, viewModel: BeersViewModel, list: PagedList<BeerResponse>?) {
+@Suppress("UNCHECKED_CAST")
+@BindingAdapter("pagedList")
+fun <T> setupRecyclerViewAdapter(view: RecyclerView, list: PagedList<T>?) {
 
-    view.layoutManager = LinearLayoutManager(view.context)
-    view.adapter = viewModel.adapter
     list?.let {
-        viewModel.adapter.submitList(it)
+        if (view.adapter is BindablePagingListAdapter<*>) {
+            (view.adapter as BindablePagingListAdapter<T>).setData(list)
+        }
     }
-
 }
 
 @BindingAdapter("imageUrl")
@@ -48,3 +49,5 @@ fun imageUrl(view: ImageView, url: String) {
 fun showHide(view: View, b: Boolean) {
     view.visibility = if (b) View.VISIBLE else View.GONE
 }
+
+

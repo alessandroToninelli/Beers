@@ -40,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:adapterSetup="@{model}"
-            android:list="@{model.beerResult}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            pagedList="@{model.beerResult}"
             app:layout_constraintBottom_toTopOf="@+id/time_button" />
 
         <Button

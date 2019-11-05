@@ -8,6 +8,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import com.example.beers.R
+import com.example.beers.binding.BindablePagingListAdapter
 import com.example.beers.databinding.BeerItemBinding
 import com.example.beers.databinding.BeersFragmentBinding
 import com.example.beers.model.BeerResponse
@@ -15,7 +16,12 @@ import com.example.beers.model.BeerResponse
 
 class BeerAdapter(
     private val callback: (BeerResponse) -> Unit
-) : PagedListAdapter<BeerResponse, BeerViewHolder<BeerItemBinding>>(DIFF_CALLBACK) {
+) : PagedListAdapter<BeerResponse, BeerViewHolder<BeerItemBinding>>(DIFF_CALLBACK), BindablePagingListAdapter<BeerResponse> {
+
+    override fun setData(list: PagedList<BeerResponse>) {
+        submitList(list)
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

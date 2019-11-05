@@ -14,10 +14,6 @@ import kotlinx.coroutines.launch
 
 class BeersViewModel(val getBeerUseCase: GetBeerUseCase) : ViewModel() {
 
-    val adapter = BeerAdapter{
-        println(it)
-    }
-
     private val getBeerUseCaseResult = getBeerUseCase.resultLiveData
 
     val networkState = Transformations.switchMap(getBeerUseCaseResult) {
